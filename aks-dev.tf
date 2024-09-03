@@ -1,6 +1,6 @@
 
 # Create a Resource Group
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "dev-rg" {
   name     = "devAKSResourceGroup"
   location = "eastus"
 }

@@ -1,6 +1,6 @@
 
 # Create a Resource Group
-resource "azurerm_resource_group" "rg" {
+resource "azurerm_resource_group" "main-rg" {
   name     = "mainAKSResourceGroup"
   location = "eastus"
 }
