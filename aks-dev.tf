@@ -22,9 +22,9 @@ resource "azurerm_subnet" "subnet" {
 }
 
 # Get Available Availability Zones
-data "azurerm_availability_zones" "available" {
-  resource_group_name = azurerm_resource_group.dev-rg.name
-}
+#data "azurerm_availability_zones" "available" {
+#  resource_group_name = azurerm_resource_group.dev-rg.name
+#}
 
 # Create an AKS Cluster
 resource "azurerm_kubernetes_cluster" "aks" {
@@ -38,7 +38,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
     name                = "default"
     node_count          = 2
     vm_size             = "Standard_D2_v2"
-    availability_zones  = [1,2] #[data.azurerm_availability_zones.available.names[0], data.azurerm_availability_zones.available.names[1]]
+    #availability_zones  = [data.azurerm_availability_zones.available.names[0], data.azurerm_availability_zones.available.names[1]]
+    zones = [1,2]
     enable_auto_scaling = true
     min_count           = 2
     max_count           = 5
