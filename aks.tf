@@ -1,6 +1,6 @@
 # Configure the Azure Provider
 provider "azurerm" {
-  features {}
+  features { }
 }
 
 # Create a Resource Group
