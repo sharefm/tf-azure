@@ -1,0 +1,24 @@
+name: tf-setup
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+    #workflow_dispatch:
+
+jobs:
+    tfenv-install:
+        runs-on: ubuntu-latest
+        steps:
+            #- uses: actions/checkout@v2
+            - name: install-tfenv
+              run: git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
+              run: mkdir -p ~/.local/bin/
+              #. ~/.profile
+              run: ln -s ~/.tfenv/bin/* ~/.local/bin
+              run: which tfenv
+              run: echo $PWD
+              shell: bash
