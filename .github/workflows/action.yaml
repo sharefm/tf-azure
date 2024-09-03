@@ -16,9 +16,17 @@ jobs:
             #- uses: actions/checkout@v2
             - name: install-tfenv
               run: git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
-              run: mkdir -p ~/.local/bin/
+
+            - name: mkdir
+              run: mkdir -p ~/.local/bin/              
               #. ~/.profile
+
+            - name: lnss
               run: ln -s ~/.tfenv/bin/* ~/.local/bin
+
+            - name: whichtf
               run: which tfenv
+
+            - name:
               run: echo $PWD
-              shell: bash
+            #  shell: bash
