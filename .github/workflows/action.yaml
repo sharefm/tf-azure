@@ -10,7 +10,7 @@ on:
     #workflow_dispatch:
 
 jobs:
-    tfenv-install:
+    Terraform-installion:
         runs-on: ubuntu-latest
         steps:
             #- uses: actions/checkout@v2
@@ -18,15 +18,17 @@ jobs:
               run: git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
 
             - name: mkdir
-              run: mkdir -p ~/.local/bin/              
-              #. ~/.profile
+              run: mkdir -p ~/.local/bin/                           
 
             - name: lnss
-              run: ln -s ~/.tfenv/bin/* ~/.local/bin
+              run: ln -s ~/.tfenv/bin/* ~/.local/bin    
+            
+            - name: install terraform
+              run: tfenv install 1.9.5
 
-            - name: whichtf
-              run: which tfenv
+            - name: install terraform
+              run: tfenv use 1.9.5
 
-            - name:
-              run: echo $PWD
-            #  shell: bash
+            - name: check terraform
+              run: echo `terraform --version`
+            
