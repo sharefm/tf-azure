@@ -8,29 +8,29 @@ resource "azurerm_resource_group" "stage-rg" {
 ## Create a Virtual Network
 #resource "azurerm_virtual_network" "vnet" {
 #  name                = "stageAKSVNet"
-#  location            = azurerm_resource_group.rg.location
-#  resource_group_name = azurerm_resource_group.rg.name
+#  location            = azurerm_resource_group.stage-rg.location
+#  resource_group_name = azurerm_resource_group.stage-rg.name
 #  address_space       = ["10.0.0.0/8"]
 #}
 #
 ## Create a Subnet
 #resource "azurerm_subnet" "subnet" {
 #  name                 = "stageAKSSubnet"
-#  resource_group_name  = azurerm_resource_group.rg.name
+#  resource_group_name  = azurerm_resource_group.stage-rg.name
 #  virtual_network_name = azurerm_virtual_network.vnet.name
 #  address_prefixes     = ["10.2.0.0/16"]
 #}
 #
 ## Get Available Availability Zones
 #data "azurerm_availability_zones" "available" {
-#  resource_group_name = azurerm_resource_group.rg.name
+#  resource_group_name = azurerm_resource_group.stage-rg.name
 #}
 #
 ## Create an AKS Cluster
 #resource "azurerm_kubernetes_cluster" "aks" {
 #  name                = "stageAKSCluster"
-#  location            = azurerm_resource_group.rg.location
-#  resource_group_name = azurerm_resource_group.rg.name
+#  location            = azurerm_resource_group.stage-rg.location
+#  resource_group_name = azurerm_resource_group.stage-rg.name
 #  dns_prefix          = "stageakscluster"
 #  kubernetes_version  = "1.24.6"
 #
