@@ -5,13 +5,13 @@ provider "azurerm" {
 
 # Create a Resource Group
 resource "azurerm_resource_group" "rg" {
-  name     = "myAKSResourceGroup"
+  name     = "sharefAKSResourceGroup"
   location = "eastus"
 }
 
 # Create a Virtual Network
 resource "azurerm_virtual_network" "vnet" {
-  name                = "myAKSVNet"
+  name                = "simAKSVNet"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = ["10.0.0.0/8"]
@@ -19,7 +19,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 # Create a Subnet
 resource "azurerm_subnet" "subnet" {
-  name                 = "myAKSSubnet"
+  name                 = "simAKSSubnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.240.0.0/16"]
@@ -32,10 +32,10 @@ data "azurerm_availability_zones" "available" {
 
 # Create an AKS Cluster
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "myAKSCluster"
+  name                = "simAKSCluster"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  dns_prefix          = "myakscluster"
+  dns_prefix          = "simakscluster"
   kubernetes_version  = "1.24.6"
 
   default_node_pool {
