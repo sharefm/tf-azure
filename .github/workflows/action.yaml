@@ -9,6 +9,12 @@ on:
             - main
     #workflow_dispatch:
 
+env:
+    CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+    CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+    SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+    TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
+
 jobs:
     Terraform-installion:
         runs-on: ubuntu-latest
@@ -17,18 +23,27 @@ jobs:
             - name: install-tfenv
               run: git clone --depth=1 https://github.com/tfutils/tfenv.git ~/.tfenv
 
-            - name: mkdir
+            - name: make-tfenv-folder
               run: mkdir -p ~/.local/bin/                           
 
-            - name: lnss
+            - name: soft-linking
               run: ln -s ~/.tfenv/bin/* ~/.local/bin    
             
-            - name: install terraform
+            - name: install-terraform
               run: tfenv install 1.9.5
 
-            - name: install terraform
+            - name: set-terraform-version
               run: tfenv use 1.9.5
 
-            - name: check terraform
-              run: echo `terraform --version`
+            - name: checkout-tf-plans
+              uses: actions/checkout@v2
             
+            - name: tf-init
+              run: terraform init
+
+            - name: tf-plan
+              run: terraform plan
+
+            - name: tf-apply
+              run: terraform apply -auto-approve
+    
