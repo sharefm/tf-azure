@@ -5,22 +5,22 @@ resource "azurerm_resource_group" "main-rg" {
   location = "eastus"
 }
 
-## Create a Virtual Network
-#resource "azurerm_virtual_network" "vnet" {
-#  name                = "mainAKSVNet"
-#  location            = azurerm_resource_group.main-rg.location
-#  resource_group_name = azurerm_resource_group.main-rg.name
-#  address_space       = ["10.0.0.0/8"]
-#}
-#
-## Create a Subnet
-#resource "azurerm_subnet" "subnet" {
-#  name                 = "mainAKSSubnet"
-#  resource_group_name  = azurerm_resource_group.main-rg.name
-#  virtual_network_name = azurerm_virtual_network.vnet.name
-#  address_prefixes     = ["10.3.0.0/16"]
-#}
-#
+# Create a Virtual Network
+resource "azurerm_virtual_network" "vnet" {
+  name                = "mainAKSVNet"
+  location            = azurerm_resource_group.main-rg.location
+  resource_group_name = azurerm_resource_group.main-rg.name
+  address_space       = ["10.0.0.0/8"]
+}
+
+# Create a Subnet
+resource "azurerm_subnet" "subnet" {
+  name                 = "mainAKSSubnet"
+  resource_group_name  = azurerm_resource_group.main-rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.3.0.0/16"]
+}
+
 ## Get Available Availability Zones
 #data "azurerm_availability_zones" "available" {
 #  resource_group_name = azurerm_resource_group.main-rg.name
