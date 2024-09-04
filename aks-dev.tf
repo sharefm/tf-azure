@@ -39,7 +39,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     node_count          = 2
     vm_size             = "Standard_D2_v2"
     #availability_zones  = [data.azurerm_availability_zones.available.names[0], data.azurerm_availability_zones.available.names[1]]
-    zones = [1,2]
+    zones = [eastus1,eastus2]
     enable_auto_scaling = true
     min_count           = 2
     max_count           = 5
