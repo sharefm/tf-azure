@@ -37,6 +37,9 @@ jobs:
 
             - name: checkout-tf-plans
               uses: actions/checkout@v2
+
+            - name: list-files
+              run: ls
             
             - name: tf-init
               run: terraform init
