@@ -1,7 +1,7 @@
 
 # Create a Resource Group
 resource "azurerm_resource_group" "main-rg" {
-  name     = "main-resource-group"
+  name     = "main-rg"
   location = "eastus"
 }
 
