@@ -42,10 +42,10 @@ jobs:
               run: terraform init
 
             - name: list-files-1
-              run: ls /home/runner/work/tf-azure/
+              run: ls .terraform/
 
             - name: list-files-22
-              run: ls $PWD
+              run: ls $-lat
 
 #            - name: tf-plan
 #              run: terraform plan
