@@ -42,7 +42,7 @@ jobs:
               run: terraform init
 
             - name: list-files-1
-              run: ls ../ #echo $PWD
+              run: ls -lat ../ #echo $PWD
 
             - name: list-files-22
               run: ls -lat
