@@ -36,17 +36,23 @@ jobs:
               run: tfenv use 1.9.5
 
             - name: checkout-tf-plans
-              uses: actions/checkout@v2
-
-            - name: list-files
-              run: ls
+              uses: actions/checkout@v2            
             
             - name: tf-init
               run: terraform init
 
+            - name: list-files-1
+              run: ls
+
             - name: tf-plan
               run: terraform plan
 
+            - name: list-files-2
+              run: ls
+
             - name: tf-apply
               run: terraform apply -auto-approve
+            
+            - name: list-files-3
+              run: ls
     
