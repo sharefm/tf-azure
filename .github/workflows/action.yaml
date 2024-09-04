@@ -42,17 +42,20 @@ jobs:
               run: terraform init
 
             - name: list-files-1
-              run: ls
+              run: echo $PWD
 
-            - name: tf-plan
-              run: terraform plan
+            - name: list-files-1
+              run: ls $PWD
 
-            - name: list-files-2
-              run: ls
-
-            - name: tf-apply
-              run: terraform apply -auto-approve
-            
-            - name: list-files-3
-              run: ls
+#            - name: tf-plan
+#              run: terraform plan
+#
+#            - name: list-files-2
+#              run: ls
+#
+#            - name: tf-apply
+#              run: terraform apply -auto-approve
+#            
+#            - name: list-files-3
+#              run: ls
     
