@@ -14,11 +14,11 @@ resource "azurerm_virtual_network" "main-vnet" {
 }
 
 # Create a Subnet
-resource "azurerm_subnet" "main-subnet" {
-  name                 = "main-subnet"
+resource "azurerm_subnet" "main-cluster-subnet" {
+  name                 = "main-cluster-subnet"
   resource_group_name  = azurerm_resource_group.main-rg.name
   virtual_network_name = azurerm_virtual_network.main-vnet.name  
-  address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes     = ["172.16.1.0/24"]
 }
 
 
@@ -37,7 +37,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     auto_scaling_enabled = true
     min_count           = 1
     max_count           = 10
-    vnet_subnet_id      = azurerm_subnet.main-subnet.id
+    vnet_subnet_id      = azurerm_subnet.main-cluster-subnet.id
   }
 
   identity {
