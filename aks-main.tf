@@ -1,13 +1,13 @@
 
 # Create a Resource Group
 resource "azurerm_resource_group" "main-rg" {
-  name     = "mainAKSResourceGroup"
+  name     = "main-resource-group"
   location = "eastus"
 }
 
 # Create a Virtual Network
 resource "azurerm_virtual_network" "vnet" {
-  name                = "mainAKSVNet"
+  name                = "main-vnet"
   location            = azurerm_resource_group.main-rg.location
   resource_group_name = azurerm_resource_group.main-rg.name
   address_space       = ["10.0.0.0/8"]
@@ -15,7 +15,7 @@ resource "azurerm_virtual_network" "vnet" {
 
 # Create a Subnet
 resource "azurerm_subnet" "subnet" {
-  name                 = "mainAKSSubnet"
+  name                 = "main-subnet"
   resource_group_name  = azurerm_resource_group.main-rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.3.0.0/16"]
