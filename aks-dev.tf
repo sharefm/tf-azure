@@ -40,7 +40,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size             = "Standard_D2_v2"
     #availability_zones  = [data.azurerm_availability_zones.available.names[0], data.azurerm_availability_zones.available.names[1]]
     zones = ["eastus1","eastus2"]
-    enable_auto_scaling = true
+    #enable_auto_scaling = true
     min_count           = 2
     max_count           = 5
     vnet_subnet_id      = azurerm_subnet.subnet.id
