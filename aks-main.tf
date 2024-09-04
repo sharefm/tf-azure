@@ -21,31 +21,26 @@ resource "azurerm_subnet" "subnet" {
   address_prefixes     = ["10.3.0.0/16"]
 }
 
-## Get Available Availability Zones
-#data "azurerm_availability_zones" "available" {
-#  resource_group_name = azurerm_resource_group.main-rg.name
-#}
-#
-## Create an AKS Cluster
-#resource "azurerm_kubernetes_cluster" "aks" {
-#  name                = "mainAKSCluster"
-#  location            = azurerm_resource_group.main-rg.location
-#  resource_group_name = azurerm_resource_group.main-rg.name
-#  dns_prefix          = "mainakscluster"
-#  kubernetes_version  = "1.24.6"
-#
-#  default_node_pool {
-#    name                = "default"
-#    node_count          = 2
-#    vm_size             = "Standard_D2_v2"
-#    availability_zones  = [data.azurerm_availability_zones.available.names[0], data.azurerm_availability_zones.available.names[1]]
-#    enable_auto_scaling = true
-#    min_count           = 2
-#    max_count           = 5
-#    vnet_subnet_id      = azurerm_subnet.subnet.id
-#  }
-#
-#  identity {
-#    type = "SystemAssigned"
-#  }
-#}
+
+
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = "main-aks-cluster"
+  location            = azurerm_resource_group.main-rg.location
+  resource_group_name = azurerm_resource_group.main-rg.name
+  dns_prefix          = "mainaks"
+  kubernetes_version  = "1.24.6"
+
+  default_node_pool {
+    name                = "default"
+    node_count          = 1
+    vm_size             = "Standard_DS2_v3"    
+    enable_auto_scaling = true
+    min_count           = 1
+    max_count           = 10
+    vnet_subnet_id      = azurerm_subnet.subnet.id
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
