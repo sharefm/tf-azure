@@ -42,9 +42,9 @@ jobs:
               run: terraform init
 
             - name: list-files-1
-              run: echo $PWD
+              run: ls /home/runner/work/tf-azure/
 
-            - name: list-files-1
+            - name: list-files-22
               run: ls $PWD
 
 #            - name: tf-plan
