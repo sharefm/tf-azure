@@ -1,23 +1,23 @@
 
 # Create a Resource Group
-resource "azurerm_resource_group" "main-rg" {
-  name     = "main-rg"
+resource "azurerm_resource_group" "stage-rg" {
+  name     = "stage-rg"
   location = "eastus"
 }
 
 # Create a Virtual Network
-resource "azurerm_virtual_network" "main-vnet" {
-  name                = "main-vnet"
-  location            = azurerm_resource_group.main-rg.location
-  resource_group_name = azurerm_resource_group.main-rg.name
-  address_space       = ["10.10.0.0/16"]
+resource "azurerm_virtual_network" "stage-vnet" {
+  name                = "stage-vnet"
+  location            = azurerm_resource_group.stage-rg.location
+  resource_group_name = azurerm_resource_group.stage-rg.name
+  address_space       = ["10.11.0.0/16"]
 }
 
-resource "azurerm_subnet" "main-subnet-1" {
-  name                 = "main-cluster-subnet"
-  resource_group_name  = azurerm_resource_group.main-rg.name
-  virtual_network_name = azurerm_virtual_network.main-vnet.name  
-  address_prefixes     = ["10.10.1.0/24"]
+resource "azurerm_subnet" "stage-subnet-1" {
+  name                 = "stage-cluster-subnet"
+  resource_group_name  = azurerm_resource_group.stage-rg.name
+  virtual_network_name = azurerm_virtual_network.stage-vnet.name  
+  address_prefixes     = ["10.11.1.0/24"]
 }
 
 # resource "azurerm_subnet" "cluster-subnet" {
@@ -31,10 +31,10 @@ resource "azurerm_subnet" "main-subnet-1" {
 
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "main-aks-cluster"
-  location            = azurerm_resource_group.main-rg.location
-  resource_group_name = azurerm_resource_group.main-rg.name
-  dns_prefix          = "mainaks"
+  name                = "stage-aks-cluster"
+  location            = azurerm_resource_group.stage-rg.location
+  resource_group_name = azurerm_resource_group.stage-rg.name
+  dns_prefix          = "stageaks"
   kubernetes_version  = "1.29.0"
   
   default_node_pool {
