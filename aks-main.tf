@@ -45,7 +45,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     auto_scaling_enabled = true
     min_count           = 1
     max_count           = 10
-    vnet_subnet_id      = azurerm_subnet.cluster-subnet.id
+    #vnet_subnet_id      = azurerm_subnet.cluster-subnet.id
   }
 
   identity {
