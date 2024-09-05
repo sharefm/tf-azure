@@ -23,24 +23,24 @@ resource "azurerm_subnet" "main-cluster-subnet" {
 
 
 
-# resource "azurerm_kubernetes_cluster" "aks" {
-#   name                = "main-aks-cluster"
-#   location            = azurerm_resource_group.main-rg.location
-#   resource_group_name = azurerm_resource_group.main-rg.name
-#   dns_prefix          = "mainaks"
-#   kubernetes_version  = "1.30.3"
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = "main-aks-cluster"
+  location            = azurerm_resource_group.main-rg.location
+  resource_group_name = azurerm_resource_group.main-rg.name
+  dns_prefix          = "mainaks"
+  kubernetes_version  = "1.29.0"
   
-#   default_node_pool {
-#     name                = "default"
-#     node_count          = 1
-#     vm_size             = "standard_d2_v2"    
-#     auto_scaling_enabled = true
-#     min_count           = 1
-#     max_count           = 10
-#     vnet_subnet_id      = azurerm_subnet.main-cluster-subnet.id
-#   }
+  default_node_pool {
+    name                = "default"
+    node_count          = 1
+    vm_size             = "standard_d2_v2"    
+    auto_scaling_enabled = true
+    min_count           = 1
+    max_count           = 10
+    vnet_subnet_id      = azurerm_subnet.main-cluster-subnet.id
+  }
 
-#   identity {
-#     type = "SystemAssigned"
-#   }
-# }
+  identity {
+    type = "SystemAssigned"
+  }
+}
