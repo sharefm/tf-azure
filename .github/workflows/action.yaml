@@ -30,10 +30,10 @@ jobs:
               run: ln -s ~/.tfenv/bin/* ~/.local/bin    
             
             - name: install-terraform
-              run: tfenv install 1.9.5
+              run: tfenv install 1.8.5
 
             - name: set-terraform-version
-              run: tfenv use 1.9.5
+              run: tfenv use 1.8.5
 
             - name: checkout-tf-plans
               uses: actions/checkout@v2            
