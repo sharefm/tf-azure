@@ -28,7 +28,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   location            = azurerm_resource_group.main-rg.location
   resource_group_name = azurerm_resource_group.main-rg.name
   dns_prefix          = "mainaks"
-  kubernetes_version  = "1.30.0"
+  kubernetes_version  = "1.29.5"
   
   default_node_pool {
     name                = "default"
