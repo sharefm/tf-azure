@@ -20,6 +20,13 @@ resource "azurerm_subnet" "main-subnet-1" {
   address_prefixes     = ["10.10.1.0/24"]
 }
 
+resource "azurerm_subnet" "main-subnet-2" {
+  name                 = "main-cluster-subnet-2"
+  resource_group_name  = azurerm_resource_group.main-rg.name
+  virtual_network_name = azurerm_virtual_network.main-vnet.name  
+  address_prefixes     = ["10.10.2.0/24"]
+}
+
 # resource "azurerm_subnet" "cluster-subnet" {
 #   name                 = "cluster-subnet"
 #   resource_group_name  = azurerm_resource_group.main-rg.name
